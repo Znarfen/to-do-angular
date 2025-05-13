@@ -1,0 +1,10 @@
+
+<div>
+    <h2> {{getStatusName()}} </h2>
+
+    <div *ngFor="let task of tasks; let i = index">
+        <div *ngIf="task.status == taskStatus">
+            <task [task]="task"></task>
+        </div>
+    </div>
+</div>

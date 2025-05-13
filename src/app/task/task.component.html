@@ -1,0 +1,24 @@
+<div class="card">
+    <div *ngIf="task.editMode == false">
+        <h3>{{ task.name }}</h3>
+
+        <p>Priority: {{ task.priority }}</p>
+        <p>Task ID: {{ task.id }}</p>
+
+        <button (click)="startEditing(task)">Edit</button>
+
+        <button (click)="changePriority(task, 1)">Add Priority</button>
+        <button (click)="changePriority(task, -1)">Reduse Priority</button>
+
+        <button *ngIf="getStatus(task, 1) != 'n/a'" (click)="increaseTask(task, 1)">Move To: {{ getStatus(task, 1) }}</button>
+        <button *ngIf="getStatus(task, -1) != 'n/a'" (click)="increaseTask(task, -1)">Move To: {{ getStatus(task, -1) }}</button>
+
+        <button *ngIf="task.status != -1" (click)="removeTask(task)">Remove</button>
+    </div>
+
+    <div *ngIf="task.editMode == true">
+        <input [(ngModel)]="newValue" />
+        <button (click)="saveTask(task)">Save</button>
+        <button (click)="cancelEdit(task)">Cancel</button>
+    </div>
+</div>

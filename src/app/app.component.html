@@ -2,38 +2,22 @@
 
 <main class="main">
 
-  <div class="todo-container">
-    <h2>To-Do List</h2>
-
-    <input [(ngModel)]="newTask" placeholder="Enter new task" />
-    <button (click)="addTask()">Add</button>
-
-    <div class="ongoing-tasks">
-      <h3>Ongoing Tasks</h3>
-      
-      <div *ngFor="let task of tasks; let i = index">
-        <div class="card" *ngIf="editingIndex !== i && !task.completed">
-          <h3>{{ task.name }}</h3>
-          <p>{{ task.priority }}</p>
-          <button (click)="startEditing(i)">Edit</button>
-          <button (click)="changePriority(i, 1)">Add Priority</button>
-          <button (click)="changePriority(i, -1)">Reduse Priority</button>
-          <button (click)="completeTask(i)">{{ task.completed ? 'Undo' : 'Complete' }}</button>
-          <button (click)="removeTask(i)">Remove</button>
-        </div>
-
-        <div *ngIf="editingIndex === i">
-          <input [(ngModel)]="editingValue" />
-          <button (click)="saveTask(i)">Save</button>
-          <button (click)="cancelEdit()">Cancel</button>
-        </div>
-      </div>
-    </div>
-
+  <div>
+    <button (click)="addTask('Example')">Add</button>
   </div>
 
-  <div class="completed-tasks">
-    <h3>Completed Tasks</h3>
+  <div class="all-tasks">
+    <div class="todo-tasks">
+      <category [tasks]="tasks" [taskStatus]="0"/>
+    </div>
+
+    <div class="ongoing-tasks">
+      <category [tasks]="tasks" [taskStatus]="1"/>
+    </div>
+
+    <div class="completed-tasks">
+      <category [tasks]="tasks" [taskStatus]="2"/>
+    </div>
   </div>
   
 </main>

@@ -1,65 +1,30 @@
-import { Component } from '@angular/core';
-import { Task } from './models/task.model';
+import { Component, Injector } from '@angular/core';
+import { TaskComponent } from './task/task.component';
+import { CategoryComponent } from './category/category.component';
+import { Task } from './task/task.model';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { GlobalComponent } from './global.component';
 
 @Component({
-  imports: [RouterOutlet, FormsModule, CommonModule],
+  imports: [RouterOutlet, FormsModule, CommonModule, CategoryComponent], // Removed BrowserModule
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 
 export class AppComponent {
+
   tasks: Task[] = [];
   newTask: string = '';
-  editingIndex: number | null = null;
   editingValue: string = '';
+  id: number = GlobalComponent.ID_UNASSIGNED;
 
   // Add a new task to the list
-  addTask() {
-    if (this.newTask.trim()) {
-      this.tasks.push({name: this.newTask, completed: false, priority: 0});
-      this.newTask = '';
-    }
-  }
-
-  // Start editing a task by its index
-  startEditing(index: number) {
-    this.editingIndex = index;
-    this.editingValue = this.tasks[index].name;
-  }
-
-  // Save the edited task
-  saveTask(index: number) {
-    if (this.editingValue.trim()) {
-      this.tasks[index].name = this.editingValue.trim();
-      this.editingIndex = null;
-    }
-  }
-
-  // Cancel editing a task
-  cancelEdit() {
-    this.editingIndex = null;
-  }
-
-  // Change priority to a task by 'howMuch' value
-  changePriority(index: number, howMuch: number) {
-    if (this.tasks[index].priority + howMuch < 0) {
-      return;
-    }
-
-    this.tasks[index].priority = this.tasks[index].priority + howMuch;
-  }
-
-  // Complete a task
-  completeTask(index: number) {
-    this.tasks[index].completed = !this.tasks[index].completed;
-  }
-
-  // Remove a task from the list by its index
-  removeTask(index: number) {
-    this.tasks.splice(index, 1);
+  addTask(taskName: string) {
+    this.id++;
+    this.tasks.push({name: taskName, priority: 0, editMode: false, id: this.id, status: 0});
+    this.newTask = '';
   }
 }

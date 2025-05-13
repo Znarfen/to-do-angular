@@ -1,37 +1,10 @@
 
 
-.card {
-    display: flex;
-    position: relative;
-    width: 390px;
-    height: 90px;
-    background-color: rgb(115, 115, 115);
-    color: white;
-    padding: 10px;
-    margin: 5px;
-    border: 2px solid rgb(18, 18, 18);
-    border-radius: 10px;
+.all-tasks {
+    width: 100%;
+    display: inline-flex;
 }
 
-.card h3 {
-    margin: 0;
-    font-size: 1.5em;
-}
-
-.card p {
-    margin: 10px;
-    font-size: 1em;
-}
-
-.card button {
-    margin: 2px;
-    background-color: transparent;
-    border: 1px solid white;
-    cursor: pointer;
-    color: white;
-}
-
-.card button:hover {
-    background-color: white;
-    color: black;
+.all-tasks div {
+    width: 33.33%;
 }
