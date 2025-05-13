@@ -1,23 +1,51 @@
 <div class="card">
     <div *ngIf="task.editMode == false">
-        <h3>{{ task.name }}</h3>
+        <h3 class="task-name">{{ task.name }}</h3>
 
-        <p>Priority: {{ task.priority }}</p>
-        <p>Task ID: {{ task.id }}</p>
+        <button class="task-edit" (click)="startEditing(task)">&#x270E;</button>
 
-        <button (click)="startEditing(task)">Edit</button>
-
-        <button (click)="changePriority(task, 1)">Add Priority</button>
-        <button (click)="changePriority(task, -1)">Reduse Priority</button>
+        <p class="task-description">{{ task.description }}</p>
 
         <button *ngIf="getStatus(task, 1) != 'n/a'" (click)="increaseTask(task, 1)">Move To: {{ getStatus(task, 1) }}</button>
         <button *ngIf="getStatus(task, -1) != 'n/a'" (click)="increaseTask(task, -1)">Move To: {{ getStatus(task, -1) }}</button>
 
-        <button *ngIf="task.status != -1" (click)="removeTask(task)">Remove</button>
+        
     </div>
 
-    <div *ngIf="task.editMode == true">
-        <input [(ngModel)]="newValue" />
+    <div class="task-id">
+        <p>ID: {{ task.id }}</p>
+    </div>
+
+    <div class="priority-bar">
+        <button (click)="changePriority(task, 1)">+</button>
+        <div class="priority-bar-end"></div>
+        <div>
+            <div class="priority-bar-amount" [ngStyle]="{ height: task.priority/30 * 100 + '%' }">
+                <p>{{task.priority}}</p>
+            </div>
+        </div>
+        <div class="priority-bar-start"></div>
+        <button (click)="changePriority(task, -1)">-</button>
+    </div>
+
+    <div class="task-status">
+        <div class="light">
+            <div class="red-light" *ngIf="task.status == 0"></div>
+        </div>
+        <div class="light">
+            <div class="yellow-light" *ngIf="task.status == 1"></div>
+        </div>
+        <div class="light">
+            <div class="grean-light" *ngIf="task.status == 2"></div>
+        </div>
+    </div>
+
+    <div class="task-edit-mode" *ngIf="task.editMode == true">
+        <textarea class="task-name" [(ngModel)]="newName" >{{ task.name }}</textarea>
+        <button class="task-remove" *ngIf="task.status != -1" (click)="removeTask(task)">REMOVE</button>
+
+        <textarea class="task-description" [(ngModel)]="newDescription">.{{ task.description }}</textarea>
+
         <button (click)="saveTask(task)">Save</button>
         <button (click)="cancelEdit(task)">Cancel</button>
     </div>

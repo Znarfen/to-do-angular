@@ -2,12 +2,11 @@ import { Component, Input } from '@angular/core';
 import { Task } from './task.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
 import { GlobalComponent } from '../global.component';
 
 @Component({
   selector: 'task',
-  imports: [CommonModule, FormsModule, RouterOutlet],
+  imports: [CommonModule, FormsModule],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css'
 })
@@ -15,14 +14,18 @@ import { GlobalComponent } from '../global.component';
 
 export class TaskComponent {
 
-  newValue: string = '';
+  newName: string = '';
+  newDescription: string = '';
 
   startEditing(task: Task) {
     task.editMode = true;
   }
 
   changePriority(task: Task, howMuch: number) {
-    if (task.priority + howMuch < 0) {
+    if (task.priority + howMuch < 1) {
+      return;
+    }
+    if (task.priority + howMuch > GlobalComponent.TASK_MAX_PRIORITY) {
       return;
     }
     task.priority = task.priority + howMuch;
@@ -52,8 +55,9 @@ export class TaskComponent {
   }
 
   saveTask(task: Task) {
-    if (this.newValue.trim()) {
-      task.name = this.newValue.trim();
+    if (this.newName.trim()) {
+      task.name = this.newName.trim();
+      task.description = this.newDescription.trim();
       task.editMode = false;
     }
   }

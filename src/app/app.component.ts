@@ -22,9 +22,9 @@ export class AppComponent {
   id: number = GlobalComponent.ID_UNASSIGNED;
 
   // Add a new task to the list
-  addTask(taskName: string) {
+  addTask() {
     this.id++;
-    this.tasks.push({name: taskName, priority: 0, editMode: false, id: this.id, status: 0});
+    this.tasks.push({name: "Task: " + this.id, description: "", priority: 1, editMode: false, id: this.id, status: 0});
     this.newTask = '';
   }
 }
