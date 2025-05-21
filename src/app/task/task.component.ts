@@ -19,6 +19,8 @@ export class TaskComponent {
 
   startEditing(task: Task) {
     task.editMode = true;
+    this.newName = task.name;
+    this.newDescription = task.description;
   }
 
   changePriority(task: Task, howMuch: number) {

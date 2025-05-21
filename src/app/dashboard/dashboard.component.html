@@ -1,0 +1,20 @@
+
+<form>
+    <input [(ngModel)]="projectName" name="d"/>
+    <button (click)="addProject()">+</button>
+    @if (addedProjectErr != null) {
+        <p>{{addedProjectErr}}</p>
+    }
+</form>
+
+<button (click)="check(projects)">Debug Projects</button>
+
+
+@for (project of projects; track $index) {
+    <a [routerLink]="['/' + project.name]">
+        <div class="project-thumnail">
+            <h1 class="project-name"> {{project.name}} </h1>
+            <p class="project-description"> {{project.description}} </p>
+        </div>
+    </a>
+}

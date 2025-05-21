@@ -1,30 +1,16 @@
-import { Component, Injector } from '@angular/core';
-import { TaskComponent } from './task/task.component';
-import { CategoryComponent } from './category/category.component';
-import { Task } from './task/task.model';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GlobalComponent } from './global.component';
+import { RouterModule } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @Component({
-  imports: [RouterOutlet, FormsModule, CommonModule, CategoryComponent], // Removed BrowserModule
+  imports: [FormsModule, CommonModule, RouterModule, DashboardComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 
 export class AppComponent {
-
-  tasks: Task[] = [];
-  newTask: string = '';
-  editingValue: string = '';
-  id: number = GlobalComponent.ID_UNASSIGNED;
-
-  // Add a new task to the list
-  addTask() {
-    this.id++;
-    this.tasks.push({name: "Task: " + this.id, description: "", priority: 1, editMode: false, id: this.id, status: 0});
-    this.newTask = '';
-  }
 }

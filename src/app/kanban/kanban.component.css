@@ -1,0 +1,9 @@
+.all-tasks {
+    width: 100%;
+    display: inline-flex;
+    min-height: 100vh;
+}
+
+.all-tasks div {
+    width: 33.33%;
+}

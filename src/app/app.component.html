@@ -2,24 +2,8 @@
 
 <main class="main">
 
-  <div>
-    <button (click)="addTask()">Add</button>
-  </div>
+  <dashboard />
 
-  <div class="all-tasks">
-    <div class="todo-tasks">
-      <category [tasks]="tasks" [taskStatus]="0"/>
-    </div>
-
-    <div class="ongoing-tasks">
-      <category [tasks]="tasks" [taskStatus]="1"/>
-    </div>
-
-    <div class="completed-tasks">
-      <category [tasks]="tasks" [taskStatus]="2"/>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
   
 </main>
-
-<router-outlet />

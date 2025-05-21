@@ -5,4 +5,5 @@ export interface Task {
   priority: number;
   editMode: boolean;
   status: number;
+  img: string;
 }

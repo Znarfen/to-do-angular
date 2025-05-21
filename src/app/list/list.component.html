@@ -1,0 +1,6 @@
+
+<input [(ngModel)]="searchTask"/>
+
+@for (task of search(searchTask); track $index) {
+    <task [task]="task"></task>
+}
