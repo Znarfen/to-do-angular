@@ -46,7 +46,7 @@
 
         <textarea class="task-description" [(ngModel)]="newDescription">.{{ task.description }}</textarea>
 
-        <button (click)="saveTask(task)">Save</button>
+        <button (click)="changeTask(task)">Save</button>
         <button (click)="cancelEdit(task)">Cancel</button>
     </div>
 </div>

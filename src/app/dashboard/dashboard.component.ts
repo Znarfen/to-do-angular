@@ -55,20 +55,23 @@ export class DashboardComponent {
         y: 0
       },
       tasks: []
-    })
+    })  
 
     this.addedProjectErr = null
 
+    // If empty
     if (this.projectName == "") {
       this.addedProjectErr = "Project Needs To Have A Name"
       return;
     }
 
+    // If spaces exists
     if (this.projectName.includes(" ")) {
       this.addedProjectErr = "No Spaces In Project Name";
       return;
     }
 
+    // If unsuported char. is in use
     let nameHaveValidChars:boolean = false;
     for (let i = 0; i < this.projectName.length; i++) {
       nameHaveValidChars = false;
@@ -81,12 +84,14 @@ export class DashboardComponent {
       }
     }
 
+    // Add project (if name do not exists)
     if (localStorage.getItem(newProject.name) == null) {
       this.projects.push(newProject);
       localStorage.setItem(this.projectName, JSON.stringify(newProject))
       this.projectName = "";
       return;
     }
+    // if project name alredy exists
     else this.addedProjectErr = 'Name "' + newProject.name + '" Alredy In Use'
   }
 }

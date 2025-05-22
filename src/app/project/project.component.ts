@@ -16,18 +16,9 @@ import { Project } from './project.model';
 })
 
 export class ProjectComponent {
-  constructor(private router: Router) {}
+  constructor(public router: Router) {}
 
-  project: Project = {
-    name: "",
-    description: "",
-    deadline: {
-      d: 0,
-      m: 0,
-      y: 0
-    },
-    tasks: []
-  };
+  project!: Project;
 
   editMode: boolean = false;
 
@@ -38,7 +29,12 @@ export class ProjectComponent {
 
   ngOnInit() {
     this.project = JSON.parse(localStorage.getItem(this.router.url.split('/')[1].toUpperCase()) || "");
-    console.log("In project: \n" + JSON.stringify(this.project))
+    console.log("In project " + this.project.name + ": \n" + JSON.stringify(this.project))
+  }
+
+  // reload project
+  reload() {
+    this.project = JSON.parse(localStorage.getItem(this.router.url.split('/')[1].toUpperCase()) || "");
   }
 
   // Save project in browser
@@ -48,23 +44,34 @@ export class ProjectComponent {
 
   // Add a new task to the list
   addTask() {
-    let id:number = this.getNewId(); 
+    this.reload();
+
+    let newId:number = this.getNewId();
     this.project.tasks.push({name: "Task",
-                    description: "", priority: 1,
-                    editMode: false, id: id,
+                    description: "",
+                    priority: 1,
+                    editMode: false, 
+                    id: newId,
                     status: 0,
-                    img: this.data});
+                    img: ""});
     this.newTask = '';
-    
     this.save();
   }
 
   // Get a id that is not in use.
   getNewId() {
-    let newId = 0;
-    for (newId = 0; newId < this.project.tasks.length; newId++) {
-      if (this.project.tasks[newId].id != newId) return newId;
+    this.reload();
+    let newId:number = 0;
+    let foundId = false;
+    while(!foundId) {
+      newId = Math.floor(Math.random() * 10000)
+      foundId = true;
+
+      this.project.tasks.forEach(tsk => {
+        if (tsk.id == newId) foundId = false;
+      });
     }
-    return newId;
+
+    return newId++;
   }
 }

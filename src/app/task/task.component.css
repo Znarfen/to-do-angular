@@ -203,7 +203,7 @@
 
 .task-id {
     position: absolute;
-    bottom: 0px;
+    bottom: -10px;
     left: 0px;
     color: rgb(32, 32, 32);
 }
