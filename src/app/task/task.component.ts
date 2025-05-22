@@ -3,6 +3,7 @@ import { Task } from './task.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { GlobalComponent } from '../global.component';
+import { ProjectComponent } from '../project/project.component';
 
 @Component({
   selector: 'task',

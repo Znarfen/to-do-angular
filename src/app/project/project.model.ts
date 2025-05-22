@@ -5,6 +5,5 @@ export interface Project {
     name: string;
     description: string;
     deadline: Date;
-    editMode: boolean;
     tasks: Task[];
 }

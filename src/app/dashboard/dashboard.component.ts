@@ -44,12 +44,11 @@ export class DashboardComponent {
   addProject() {
     this.projectName = this.projectName.toLocaleUpperCase();
 
-    let allowedChars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '-', '_']
+    let allowedChars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '-', '_', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
     let newProject: Project = ({
       name: this.projectName,
       description: "",
-      editMode: false,
       deadline: {
         d: 0,
         m: 0,
@@ -62,18 +61,31 @@ export class DashboardComponent {
 
     if (this.projectName == "") {
       this.addedProjectErr = "Project Needs To Have A Name"
-      return
+      return;
     }
 
     if (this.projectName.includes(" ")) {
       this.addedProjectErr = "No Spaces In Project Name";
+      return;
+    }
+
+    let nameHaveValidChars:boolean = false;
+    for (let i = 0; i < this.projectName.length; i++) {
+      nameHaveValidChars = false;
+      allowedChars.forEach(char => {
+        if (char == this.projectName.charAt(i)) nameHaveValidChars = true;
+      });
+      if (!nameHaveValidChars) {
+        this.addedProjectErr = "You Have Used Unsuported Character(s)"
+        return;
+      }
     }
 
     if (localStorage.getItem(newProject.name) == null) {
       this.projects.push(newProject);
       localStorage.setItem(this.projectName, JSON.stringify(newProject))
       this.projectName = "";
-      return
+      return;
     }
     else this.addedProjectErr = 'Name "' + newProject.name + '" Alredy In Use'
   }

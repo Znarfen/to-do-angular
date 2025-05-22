@@ -7,11 +7,8 @@
     }
 </form>
 
-<button (click)="check(projects)">Debug Projects</button>
-
-
 @for (project of projects; track $index) {
-    <a [routerLink]="['/' + project.name]">
+    <a [routerLink]="['/' + project.name.toLowerCase()]">
         <div class="project-thumnail">
             <h1 class="project-name"> {{project.name}} </h1>
             <p class="project-description"> {{project.description}} </p>
