@@ -1,17 +1,28 @@
 
-<form>
-    <input [(ngModel)]="projectName" name="d"/>
-    <button (click)="addProject()">+</button>
-    @if (addedProjectErr != null) {
-        <p>{{addedProjectErr}}</p>
-    }
-</form>
+<div class="dashboard">
+    <form>
+        <input [(ngModel)]="projectName" name="d"/>
+        <button (click)="addProject()">+</button>
+        @if (addedProjectErr != null) {
+            <p>{{addedProjectErr}}</p>
+        }
+    </form>
 
-@for (project of projects; track $index) {
-    <a [routerLink]="['/' + project.name.toLowerCase()]">
-        <div class="project-thumnail">
-            <h1 class="project-name"> {{project.name}} </h1>
-            <p class="project-description"> {{project.description}} </p>
-        </div>
-    </a>
-}
+    <form>
+        <input [(ngModel)]="projectSearch" name="search"/>
+        <button (click)="searchProjects()">Search</button>
+    </form>
+
+    @for (project of projects; track $index) {
+        <a [routerLink]="['/' + project.name.toLowerCase()]">
+            <a [routerLink]="['/']">
+                <div [ngClass]="isOnProjectPage(project) ? 'selected-project' : 'project-thumnail'">
+                    <h1> {{project.name}} </h1>
+                    <p> {{project.description}} </p>
+                    <p> Amount of tasks: {{project.tasks.length}} </p>
+                    <p> Deadline: {{project.deadline.d}} / {{project.deadline.m}} / {{project.deadline.y}} </p>
+                </div>
+            </a>
+        </a>
+    }
+</div>

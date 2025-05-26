@@ -1,13 +1,31 @@
-  <h1>/ {{ project.name }}</h1>
-  
+
+<div class="project">
+  <h1>/ {{ project.name | titlecase }} </h1>
+  <p>{{ project.description }}</p>
+  <p>{{ project.deadline.d + " / " + project.deadline.m + " / " + project.deadline.y }}</p>
+
   <div>
-    <button>Edit: {{ project?.name }}</button>
+    <button (click)="edit()">Edit: {{ project.name }}</button>
   </div>
+
+  @if (editMode) {
+    <button (click)="changeDeadline('d', 1)">d+</button>
+    <button (click)="changeDeadline('d', -1)">d-</button>
+    <button (click)="changeDeadline('m', 1)">m+</button>
+    <button (click)="changeDeadline('m', -1)">m-</button>
+    <button (click)="changeDeadline('y', 1)">y+</button>
+    <button (click)="changeDeadline('y', -1)">y-</button>
+
+    <textarea [(ngModel)]="project.description">{{ project.description }}</textarea>
+
+    <p></p>
+    <button (click)="save()">Save</button>
+    <p></p>
+  }
 
   <div>
       <button (click)="addTask()">Add</button>
   </div>
 
   <kanban [tasks]="project.tasks"/>
-
-  <list [tasks]="project.tasks"/>
+</div>

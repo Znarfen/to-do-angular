@@ -4,8 +4,8 @@ import { Project } from '../project/project.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { GlobalComponent } from '../global.component';
-import { ProjectComponent } from '../project/project.component';
 import { Router } from '@angular/router';
+import { ProjectComponent } from '../project/project.component';
 
 @Component({
   selector: 'task',
@@ -19,7 +19,7 @@ export class TaskComponent {
 
   newName: string = '';
   newDescription: string = '';
-  project!: Project;
+  declare project: Project;
 
   ngOnInit() {
     this.reload();
@@ -57,6 +57,44 @@ export class TaskComponent {
     task.priority = task.priority + howMuch;
   }
 
+  // Change deadline (dmy is "d" for day, "m" for month, "y" for year , anount is chage)
+  changeDeadline(task:Task, dmy:string, amount:number) {
+    switch (dmy) {
+      case "d":
+        this.task.deadline.d += amount;
+        if (this.task.deadline.d > 31) {
+          this.task.deadline.d = 1;
+          this.task.deadline.m++;
+        }
+        else if (this.task.deadline.d <= 0) {
+          this.task.deadline.d = 31;
+          this.task.deadline.m--;
+        }
+        break;
+
+      case "m":
+        this.task.deadline.m += amount;
+        if (this.task.deadline.m > 12) {
+          this.task.deadline.m = 1;
+          this.task.deadline.y++;
+        }
+        else if (this.task.deadline.m <= 0) {
+          this.task.deadline.m = 12;
+          this.task.deadline.y--;
+        }
+        break;
+
+      case "y":
+        this.task.deadline.y += amount;
+        break;
+    
+      default:
+        console.error('"dmy" can only be "d" (day) , "m" (month) or "y" (year).')
+        return;
+    }
+    return;
+  }
+
   // Increse task (if direction is >0: decrese)
   increaseTask(task: Task, direction: number) {
     if (task.status > GlobalComponent.TASK_STATUS_DONE) return;
@@ -66,7 +104,7 @@ export class TaskComponent {
   }
 
   // Get a stetus from a task
-  getStatus(task: Task, direction: number) {
+  getStatus(task: Task, direction: number):string {
     if (task.status + direction == GlobalComponent.TASK_STATUS_TO_DO) {
       return 'To Do';
     }

@@ -9,18 +9,17 @@
         <button *ngIf="getStatus(task, 1) != 'n/a'" (click)="increaseTask(task, 1)">Move To: {{ getStatus(task, 1) }}</button>
         <button *ngIf="getStatus(task, -1) != 'n/a'" (click)="increaseTask(task, -1)">Move To: {{ getStatus(task, -1) }}</button>
 
-        
     </div>
 
-    <div class="task-id">
-        <p>ID: {{ task.id }}</p>
+    <div class="task-deadline">
+        <p>Deadline: {{ task.deadline.d + " / " + task.deadline.m + " / " + task.deadline.y }}</p>
     </div>
 
     <div class="priority-bar">
         <button (click)="changePriority(task, 1)">+</button>
         <div class="priority-bar-end"></div>
         <div>
-            <div class="priority-bar-amount" [ngStyle]="{ height: task.priority/30 * 100 + '%' }">
+            <div class="priority-bar-amount" [ngStyle]="{ height: task.priority/3 * 100 + '%' }">
                 <p>{{task.priority}}</p>
             </div>
         </div>
@@ -44,9 +43,16 @@
         <textarea class="task-name" [(ngModel)]="newName" >{{ task.name }}</textarea>
         <button class="task-remove" *ngIf="task.status != -1" (click)="removeTask(task)">REMOVE</button>
 
-        <textarea class="task-description" [(ngModel)]="newDescription">.{{ task.description }}</textarea>
+        <textarea class="task-description" [(ngModel)]="newDescription">{{ task.description }}</textarea>
 
         <button (click)="changeTask(task)">Save</button>
         <button (click)="cancelEdit(task)">Cancel</button>
+
+        <button (click)="changeDeadline(task, 'd', 1)">d+</button>
+        <button (click)="changeDeadline(task, 'd', -1)">d-</button>
+        <button (click)="changeDeadline(task, 'm', 1)">m+</button>
+        <button (click)="changeDeadline(task, 'm', -1)">m+</button>
+        <button (click)="changeDeadline(task, 'y', 1)">y+</button>
+        <button (click)="changeDeadline(task, 'y', -1)">y+</button>
     </div>
 </div>

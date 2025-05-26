@@ -1,6 +1,6 @@
 
 <div>
-    <h2> {{getStatusName()}} </h2>
+    <h2 class="status-name"> {{getStatusName()}} </h2>
 
     <div *ngFor="let task of tasks; let i = index">
         <div *ngIf="task.status == taskStatus">

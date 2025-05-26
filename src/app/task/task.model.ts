@@ -5,5 +5,9 @@ export interface Task {
   priority: number;
   editMode: boolean;
   status: number;
-  img: string;
+  deadline: {
+    d: number;
+    m: number;
+    y: number;
+  }
 }

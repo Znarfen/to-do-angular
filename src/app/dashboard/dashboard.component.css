@@ -1,0 +1,44 @@
+
+.dashboard {
+    top: 0;
+    flex-direction: column;
+    padding: 7px;
+    width: 200px;
+    height: fit-content;
+}
+
+form {
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.project-thumnail, .selected-project {
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(184, 187, 207);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgb(43, 43, 43);
+    color: rgb(69, 79, 87);
+    text-decoration: none;
+}
+
+.project-thumnail h1, .selected-project h1 {
+    font-size: 18px;
+}
+
+.project-thumnail p, .selected-project p {
+    font-size: 12px;
+}
+
+.selected-project {
+    box-shadow: 0 1px 2px rgb(52, 52, 52);
+    border-left: 5px solid rgb(0, 123, 255);
+    width: calc(100% - 5px);
+}
