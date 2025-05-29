@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from './footer/footer.component';
 
 @Component({
+  standalone: true,
   imports: [FormsModule, CommonModule, RouterModule, DashboardComponent, FooterComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',

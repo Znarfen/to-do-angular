@@ -1,11 +1,8 @@
 
 <div class="dashboard">
     <form>
-        <input [(ngModel)]="projectName" name="d"/>
-        <button (click)="addProject()">+</button>
-        @if (addedProjectErr != null) {
-            <p>{{addedProjectErr}}</p>
-        }
+        <input [(ngModel)]="projectName" name="add"/>
+        <button (click)="addProject(projectName)">Add</button>
     </form>
 
     <form>
@@ -20,7 +17,18 @@
                     <h1> {{project.name}} </h1>
                     <p> {{project.description}} </p>
                     <p> Amount of tasks: {{project.tasks.length}} </p>
-                    <p> Deadline: {{project.deadline.d}} / {{project.deadline.m}} / {{project.deadline.y}} </p>
+                    <p> Deadline: {{ project | deadline }} </p>
+
+                    @if(isOnProjectPage(project)) {
+                        <button (click)="edit(project)">Edit</button>
+                        @if(edit(project, true)) {
+                            <form>
+                                <input [(ngModel)]="projectReName" name="rename"/>
+                                <button (click)="changeProjectName(project)">ReName</button>
+                            </form>
+                        }
+                    }
+
                 </div>
             </a>
         </a>

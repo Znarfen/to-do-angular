@@ -7,16 +7,23 @@ import { Task } from '../task/task.model';
 import { GlobalComponent } from '../global.component';
 import { Router } from '@angular/router';
 import { Project } from './project.model';
+import { deadlinePipe } from '../pipe/deadline.pipe';
+import { ApiService } from '../services/api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'project',
-  imports: [CommonModule, FormsModule, KanbanComponent, ListComponent],
+  standalone: true,
+  imports: [CommonModule, FormsModule, KanbanComponent, deadlinePipe, HttpClientModule],
   templateUrl: './project.component.html',
   styleUrl: './project.component.css'
 })
 
 export class ProjectComponent {
-  constructor(public router: Router) {}
+  constructor(
+    public router: Router,
+    private api: ApiService
+  ) {}
 
   project!: Project;
 
@@ -26,10 +33,17 @@ export class ProjectComponent {
   newTask: string = '';
   editingValue: string = '';
 
+  exampleTasks?: JSON;
+
   ngOnInit() {
     this.project = JSON.parse(localStorage.getItem(this.router.url.split('/')[1].toUpperCase()) || "");
     //console.log("In project " + this.project.name + ": \n" + JSON.stringify(this.project))
-  }
+
+    this.api.getTasks()
+      .then(tsk => {
+        this.exampleTasks = tsk;
+      })
+    }
 
   // Save project in browser
   save() {
@@ -86,12 +100,21 @@ export class ProjectComponent {
     this.project.description = newDescription
   }
 
+  // Remove project
+  removeProject() {
+    if (confirm("Are you sure you want to delete this project?")) {
+      localStorage.removeItem(this.project.name);
+      //this.save();
+      this.router.navigate(['/']);
+    }
+  }
+
   // Add a new task to the list
   addTask() {
     let day = new Date();
     let newId:number = this.getNewId();
     this.project.tasks.push({
-      name: "Task",
+      name: this.api.getRandomeTask(this.exampleTasks),
       description: "",
       priority: 1,
       editMode: false, 
