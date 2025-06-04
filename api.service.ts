@@ -7,8 +7,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ApiService {
-  
-  apiUrl: string = "https://dummyjson.com/todos/";
+  private apiUrl: string = "https://dummyjson.com/todos/";
 
   constructor(private http: HttpClient) {}
   
@@ -16,7 +15,7 @@ export class ApiService {
     return this.http.get<JSON>(this.apiUrl + arg).pipe(
 
       catchError((error) => {
-        console.warn('no connection to api: ' + this.apiUrl + arg);
+        console.warn('no connection to api: ' + this.apiUrl + arg, error);
         return of({ todos: [{ todo: 'Task' }] });
       })
     );

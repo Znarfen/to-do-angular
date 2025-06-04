@@ -56,11 +56,18 @@ export class DashboardComponent {
     const allowedChars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '-', '_', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     let day = new Date();
 
-
     let newProject: Project;
-    if (copyProject !== false) {
-      newProject = copyProject as Project;
-      newProject.name = newProjectName;
+    if (copyProject !== false && typeof copyProject !== 'boolean') {
+      newProject = {
+        name: newProjectName,
+        description: copyProject.description,
+        deadline: {
+          d: copyProject.deadline.d,
+          m: copyProject.deadline.m,
+          y: copyProject.deadline.y
+        },
+        tasks: copyProject.tasks
+      };
     } else {
       newProject = {
         name: newProjectName,
@@ -74,6 +81,8 @@ export class DashboardComponent {
       };
     }
 
+    //return false;
+
     // If empty
     if (newProjectName == "") {
       alert("Project Needs To Have A Name")
@@ -86,7 +95,7 @@ export class DashboardComponent {
       return false;
     }
 
-    // If unsuported char. is in use
+    // If unsuported char is in use
     let nameHaveValidChars:boolean = false;
     for (let i = 0; i < newProjectName.length; i++) {
       nameHaveValidChars = false;
@@ -121,6 +130,10 @@ export class DashboardComponent {
     return project == this.editProject;
   }
 
+  gotoSubPage(arg: string) {
+    window.location.href = window.location.origin + "/" + arg;
+  }
+
   // Change Project Name
   changeProjectName(project: Project) {
     let oldName: string = project.name;
@@ -128,7 +141,7 @@ export class DashboardComponent {
     // Only proceed if the new project was actually created
     if (this.addProject(this.projectReName, project)) {
       localStorage.removeItem(oldName);
-      window.location.href = window.location.origin + "/" + this.projectReName;
+      this.gotoSubPage(this.projectReName);
     }
     this.projectReName = "";
   }

@@ -11,26 +11,27 @@
     </form>
 
     @for (project of projects; track $index) {
-        <a [routerLink]="['/' + project.name.toLowerCase()]">
-            <a [routerLink]="['/']">
                 <div [ngClass]="isOnProjectPage(project) ? 'selected-project' : 'project-thumnail'">
-                    <h1> {{project.name}} </h1>
-                    <p> {{project.description}} </p>
-                    <p> Amount of tasks: {{project.tasks.length}} </p>
-                    <p> Deadline: {{ project | deadline }} </p>
+
+                    <a [routerLink]="['/' + project.name.toLowerCase()]">
+                        <a [routerLink]="['/']">
+                            <h1> {{project.name}} </h1>
+                            <p> {{project.description}} </p>
+                            <p> Amount of tasks: {{project.tasks.length}} </p>
+                            <p> Deadline: {{ project | deadline }} </p>
+                        </a>
+                    </a>
 
                     @if(isOnProjectPage(project)) {
                         <button (click)="edit(project)">Edit</button>
                         @if(edit(project, true)) {
                             <form>
-                                <input [(ngModel)]="projectReName" name="rename"/>
+                                <input [(ngModel)]="projectReName" name="rename" id="rename"/>
                                 <button (click)="changeProjectName(project)">ReName</button>
                             </form>
                         }
                     }
 
                 </div>
-            </a>
-        </a>
     }
 </div>

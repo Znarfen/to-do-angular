@@ -64,11 +64,12 @@ export class TaskComponent {
         this.task.deadline.d += amount;
         if (this.task.deadline.d > 31) {
           this.task.deadline.d = 1;
-          this.task.deadline.m++;
+          this.changeDeadline(task, 'm', 1);
         }
         else if (this.task.deadline.d <= 0) {
           this.task.deadline.d = 31;
-          this.task.deadline.m--;
+          this.changeDeadline(task, 'm', -1);
+
         }
         break;
 
@@ -76,11 +77,13 @@ export class TaskComponent {
         this.task.deadline.m += amount;
         if (this.task.deadline.m > 12) {
           this.task.deadline.m = 1;
-          this.task.deadline.y++;
+          this.changeDeadline(task, 'y', 1);
+
         }
         else if (this.task.deadline.m <= 0) {
           this.task.deadline.m = 12;
-          this.task.deadline.y--;
+          this.changeDeadline(task, 'y', -1);
+
         }
         break;
 
@@ -102,7 +105,7 @@ export class TaskComponent {
     task.status = task.status + direction;
     this.saveTask(task);
   }
-
+  
   // Get a stetus from a task
   getStatus(task: Task, direction: number):string {
     if (task.status + direction == GlobalComponent.TASK_STATUS_TO_DO) {

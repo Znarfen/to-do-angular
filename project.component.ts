@@ -102,17 +102,12 @@ export class ProjectComponent {
     this.project.description = newDescription
   }
 
-  // go to home page
-  gotToHome() {
-    this.router.navigate(['/']);
-  }
-
   // Remove project
   removeProject() {
     if (confirm("Are you sure you want to delete this project?")) {
       localStorage.removeItem(this.project.name);
       //this.save();
-      this.gotToHome();
+      this.router.navigate(['/']);
     }
   }
 
@@ -142,7 +137,7 @@ export class ProjectComponent {
     let newId:number = 0;
     let foundId = false;
     while(!foundId) {
-      newId = Math.floor(Math.random() * 99999)
+      newId = Math.floor(Math.random() * 10000)
       foundId = true;
 
       this.project.tasks.forEach(tsk => {
