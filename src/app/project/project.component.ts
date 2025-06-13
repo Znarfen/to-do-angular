@@ -62,7 +62,7 @@ export class ProjectComponent {
     switch (dmy) {
       case "d":
         this.project.deadline.d += amount;
-        if (this.project.deadline.d > 31) {
+        if (this.project.deadline.d >= 31) {
           this.project.deadline.d = 1;
           this.changeDeadline('m', 1)
         }
@@ -103,7 +103,7 @@ export class ProjectComponent {
   }
 
   // go to home page
-  gotToHome() {
+  goToHome() {
     this.router.navigate(['/']);
   }
 
@@ -112,7 +112,7 @@ export class ProjectComponent {
     if (confirm("Are you sure you want to delete this project?")) {
       localStorage.removeItem(this.project.name);
       //this.save();
-      this.gotToHome();
+      this.goToHome();
     }
   }
 

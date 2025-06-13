@@ -6,6 +6,7 @@ import { Task } from "../task/task.model";
     name: 'deadline'
 })
 
+// Display the deadline of a project or task (pt) in the format "d / m / y"
 export class deadlinePipe implements PipeTransform {
     transform(pt: Project | Task): string {
         return pt.deadline.d + " / " + pt.deadline.m + " / " + pt.deadline.y

@@ -31,7 +31,7 @@ describe('ProjectComponent', () => {
 
     // Mock tings that can mess with testing
 
-    component.gotToHome = () => {};
+    component.goToHome = () => {};
 
     component.save = () => {};
 
@@ -43,11 +43,20 @@ describe('ProjectComponent', () => {
     expect(component.project.tasks.length).toBe(1);
   });
 
-  it('should change deadline', () => {
+  it('should change deadline to day = 1 , month = 1 , year = 2000', () => {
+    component.project.deadline = { d: 31, m: 12, y: 1999 };
     component.changeDeadline('d', 1)
     expect(component.project.deadline.d).toBe(1);
     expect(component.project.deadline.m).toBe(1);
     expect(component.project.deadline.y).toBe(2000);
+  });
+
+  it('should change deadline to day = 31 , month = 12 , year = 1999', () => {
+    component.project.deadline = { d: 1, m: 1, y: 2000 };
+    component.changeDeadline('d', -1)
+    expect(component.project.deadline.d).toBe(31);
+    expect(component.project.deadline.m).toBe(12);
+    expect(component.project.deadline.y).toBe(1999);
   });
 
   it('should change description on project', () => {
@@ -67,7 +76,7 @@ describe('ProjectComponent', () => {
     expect(localStorage.getItem("TESTPRO")).not.toBeNull()
   })
 
-  it('Every id should only be unique', () => {
+  it('Every id should be unique', () => {
     component.addTask();
     let checkId = component.project.tasks[0].id
 

@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { GlobalComponent } from '../global.component';
 import { Router } from '@angular/router';
-import { ProjectComponent } from '../project/project.component';
 
 @Component({
   selector: 'task',

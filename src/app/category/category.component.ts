@@ -7,11 +7,16 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'category',
+  standalone: true,
   imports: [TaskComponent, CommonModule, FormsModule],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })
-export class CategoryComponent {
+
+export class CategoryComponent<T extends Task = Task> {
+  @Input() tasks: T[] = [];
+  @Input() taskStatus: number = 0;
+  @Input() getStatus?: (status: number) => string;
 
   getStatusName(): string {
     switch (this.taskStatus) {
@@ -27,7 +32,4 @@ export class CategoryComponent {
         return 'Unknown';
     }
   }
-
-  @Input() tasks: Task[] = [];
-  @Input() taskStatus: number = 0;
 }
