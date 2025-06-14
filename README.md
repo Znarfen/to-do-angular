@@ -139,7 +139,7 @@ ToDoAngular uses local storage.
 
 That’s right. Your tasks are saved right inside your browser. There is no backend, no database in the cloud, no helpful little server to back you up. It’s just you, your browser, and an unspoken agreement not to hit “Clear Site Data” unless you mean it.
 
-Everything you do—every project you create, every task you forget about, every deadline you totally missed but pretend you didn’t—lives in your browser, forever. Or until you open DevTools and commit emotional arson. (Or delite the project normal...)
+Everything you do—every project you create, every task you forget about, every deadline you totally missed but pretend you didn’t—lives in your browser, forever. Or until you open DevTools and commit emotional arson. (Or delite the project normaly...)
 
 No logins. No syncing. No “Oops, your session expired.”
 Just raw, browser-based permanence.
