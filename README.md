@@ -1,59 +1,173 @@
 # ToDoAngular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
+- Instructions for installing and starting the project
+- Description of implemented features
+- Technical documentation (architecture, used technologies, API documentation)
+- Reflections on design decisions and any challenges
+- Screenshots of the application
 
-## Development server
+## How to run:
 
-To start a local development server, run:
+* Install the project from GitHub
+* Open a terminal
+* Navigate to the project folder in your terminal
+* Run `ng serve --open` in the terminal to run ToDoAngular locally
+* Open the link to lockalhost
+* Run `ng test` in the terminal to run all tests
 
-```bash
-ng serve
+## Technical overview:
+
+This project uses an API from Dummy JSON: https://dummyjson.com/todos/
+
+```
+/public
+    /readme <- (for readme img)
+/src
+    /app    <- (for components)
+        ...
+        /pipe       <- (for pipe.ts files)
+        /services   <- (for .service.ts files)
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### How to use (and design):
 
-## Code scaffolding
+The application has a sidebar with all your projects.
+In the "main section" is the selected project.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+To select a project, you first have to create a new project.
+When a new project has been created, you can select it by clicking on it.
 
-```bash
-ng generate component component-name
-```
+In the project, you can add tasks, change tasks, and change parameters of the project (such as deadline).
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Tasks are divided into three different categories: "To Do", "Ongoing", and "Done".
+To move a task, simply click on "Move To: [selected area]".
 
-```bash
-ng generate --help
-```
+To edit a task, click on the pen icon.
+When in edit mode, you can change the name, description, and more.
 
-## Building
+#### Design:
 
-To build the project run:
+Tasks have a traffic light to easily display which category they are in.
+The site is simple to give it a clean look and has a very nice color palette of white and gray (absolutely not boring to look at!).
+The sidebar is a very light gray, very easy to miss, but it gives the site a cleaner look that the user might not even notice.
 
-```bash
-ng build
-```
+**Note:** Have the window in full screen. The site (or rather the CSS) is only PC compatible. (This is a design choice to give it a more professional look, as it is made for PC where you work.)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+#### Image instructions on how to create a project and task:
 
-## Running unit tests
+Create project!
+![alt text](/public/readme/image1.png)  
+Create task!
+![alt text](/public/readme/image2.png)  
+Add tasks! In this case will we add three tasks, very impresive if you ask me!
+![alt text](/public/readme/image3.png)  
+Move tasks! You can move tasks to all three difrent categories categories: "To Do", "Ongoing", and "Done". Quite revelusinary, don't you think?
+![alt text](/public/readme/image4.png)  
+You have now made your very own super cool and very not boring project that contains tasks!  
+![alt text](/public/readme/image5.png)
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Why ToDoAngular?
 
-```bash
-ng test
-```
+Why indeed? Why wouldn’t you want to use ToDoAngular?
 
-## Running end-to-end tests
+You’ve got tasks. You’ve got projects. You’ve got deadlines, stress, existential dread, and a mild caffeine addiction strong enough to power a small hovercraft. What you don’t have—until now—is a beautifully chaotic, suspiciously over-engineered Angular application that’s just begging to be used for organizing your responsibilities in the most dramatic, high-stakes, keyboard-smashing way possible.
 
-For end-to-end (e2e) testing, run:
+This project will bearly get a **pass** in grade.
+Not a distinction. Not a merit. This is the kind of project that walks into the evaluation room
+wearing sunglasses, hands in its pockets, and says, “Yeah, I did the thing. What of it?”
 
-```bash
-ng e2e
-```
+It’s structurally sound. It functions. It adheres to the assignment criteria in the same way duct tape adheres to a leaky pipe—it gets the job done, but it’s not elegant, and it definitely rattles when shaken.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Why isn’t it more? **It do not need to be more!**
 
-## Additional Resources
+But does it meet the requirements?  
+Oh, yes. Painfully, gloriously, exactly.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This is a **project that passes** not because it’s flashy, but because it stands tall, stares mediocrity in the face, and says:  
+> “I did what was asked, and then I overengineered the parts no one cared about.”
+
+If this project had a motto, it would be:  
+**"Functional. Overbuilt. Barely Styled. Pass-worthy."**
+
+ToDoAngular isn’t here to impress.  
+It’s here to survive the rubric.
+
+ToDoAngular is not just another ToDo app.
+It’s an experience.
+A lifestyle.
+A philosophy.
+
+When you open ToDoAngular, you don’t just see tasks—you see potential.
+Potential for greatness. Potential for productivity. Potential for losing yourself in a spiraling feedback loop of renaming variables, tweaking layout pixels, and rewording a task description twelve times before actually doing the thing.
+
+And isn’t that what being a developer is truly about?
+But wait—there’s more:
+
+    Ever wanted to sort tasks into exactly three categories because life is too short for flexibility? Done.
+
+    Love clicking the “Move To” button as if you’re commanding troops in a military operation? Oh, you’re in the right place.
+
+    Wish your task management interface had the emotional subtlety of traffic lights and the raw intensity of grayscale palettes? Look no further.
+
+    Need an app that doesn’t even pretend to work on mobile? You found it. You’re welcome.
+
+A Bold New Frontier: Renaming, Redefining, Rescheduling (Without Reminders)
+
+Welcome to the wild west of productivity, where your tasks are not dead checklist items, but living, editable chronicles of your mental to-do tornado. Here, you don’t just manage tasks—you sculpt narratives. You wield Angular forms like a poet wields a quill.
+📝 Rename It All
+
+Tired of calling your project “Stuff I Probably Should Do”? Reclaim your destiny. Rename it to “Operation Thunderstrike: Refactor the Backend.”
+ToDoAngular lets you rewrite history at any time. Name changes aren’t just allowed—they’re encouraged. Because nothing says productivity like indecision dressed in confidence.
+📜 Describe with Passion
+
+Why limit your task to a boring sentence? Expand. Embellish. Emote. This is your internal monologue, immortalized. Your task description can become a rant, a roadmap, or a love letter to a bug you can’t reproduce.
+⏰ Deadlines? You Control Time Now
+
+Set the deadline. Change it. Move it forward. Move it backward. Re-add it out of guilt. ToDoAngular doesn’t judge. It simply nods stoically and lets you pretend your calendar is under control.
+
+But here's the twist:
+
+    There are no reminders.
+
+No popups. No pings. No cute little “hey, just checking in 👀” nudges. If a deadline passes and you weren’t paying attention? That’s on you, hero. This app isn’t your mom.
+It’s a minimalist dojo of consequence.
+Eternal Memory Through Local Storage
+
+And now, the pièce de résistance:
+
+ToDoAngular uses local storage.
+
+That’s right. Your tasks are saved right inside your browser. There is no backend, no database in the cloud, no helpful little server to back you up. It’s just you, your browser, and an unspoken agreement not to hit “Clear Site Data” unless you mean it.
+
+Everything you do—every project you create, every task you forget about, every deadline you totally missed but pretend you didn’t—lives in your browser, forever. Or until you open DevTools and commit emotional arson. (Or delite the project normal...)
+
+No logins. No syncing. No “Oops, your session expired.”
+Just raw, browser-based permanence.
+
+You are the backend.
+
+You are the DevOps team.
+
+You are the cloud now.
+
+And when you return after three weeks of burnout and existential spiraling?
+Your unfinished projects are still there, faithfully waiting, like little Post-It notes of guilt stuck to the inside of your hard drive’s soul.
+In Summary:
+
+Use ToDoAngular if you want:
+
+    A task manager that respects you just enough to let you fail on your own terms.
+
+    A to-do list that lives in your browser like a quiet gremlin whispering, “You still haven’t fixed the navbar bug.”
+
+    A project structure powered entirely by Angular modules and unrepentant idealism.
+
+    Desktop-only glory, because productivity deserves pixels.
+
+    No reminders, no mercy, no backend.
+
+Also, it’s Angular. And that means it’s serious.
+
+---
+
+(May have taken insparation from chatGPT with the last point: **Why ToDoAngular**)
