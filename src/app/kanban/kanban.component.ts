@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CategoryComponent } from '../category/category.component';
-import { Task } from '../task/task.model';
+import { Task } from '../interface/task';
 
 @Component({
   selector: 'kanban',

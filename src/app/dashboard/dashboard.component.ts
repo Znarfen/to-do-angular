@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Project } from '../project/project.model';
-import { Task } from '../task/task.model';
+import { Project } from '../interface/project';
+import { Task } from '../interface/task';
 import { Injectable } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { UrlCodec } from '@angular/common/upgrade';

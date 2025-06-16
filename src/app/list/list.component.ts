@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Task } from '../task/task.model';
+import { Task } from '../interface/task';
 import { TaskComponent } from '../task/task.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

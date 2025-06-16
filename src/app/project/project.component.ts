@@ -3,13 +3,14 @@ import { KanbanComponent } from '../kanban/kanban.component';
 import { ListComponent } from '../list/list.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Task } from '../task/task.model';
+import { Task } from '../interface/task';
 import { GlobalComponent } from '../global.component';
 import { Router } from '@angular/router';
-import { Project } from './project.model';
+import { Project } from '../interface/project';
 import { deadlinePipe } from '../pipe/deadline.pipe';
 import { ApiService } from '../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { DeadlineService } from '../services/deadline.service';
 
 @Component({
   selector: 'project',
@@ -22,7 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
 export class ProjectComponent {
   constructor(
     public router: Router,
-    private api: ApiService
+    private api: ApiService,
+    private deadline: DeadlineService
+
   ) {}
 
   project!: Project;
@@ -59,40 +62,7 @@ export class ProjectComponent {
 
   // Change deadline (dmy is "d" for day, "m" for month, "y" for year , anount is chage)
   changeDeadline(dmy:string, amount:number) {
-    switch (dmy) {
-      case "d":
-        this.project.deadline.d += amount;
-        if (this.project.deadline.d >= 31) {
-          this.project.deadline.d = 1;
-          this.changeDeadline('m', 1)
-        }
-        else if (this.project.deadline.d <= 0) {
-          this.project.deadline.d = 31;
-          this.changeDeadline('m', -1)
-        }
-        break;
-
-      case "m":
-        this.project.deadline.m += amount;
-        if (this.project.deadline.m > 12) {
-          this.project.deadline.m = 1;
-          this.changeDeadline('y', 1)
-
-        }
-        else if (this.project.deadline.m <= 0) {
-          this.project.deadline.m = 12;
-          this.changeDeadline('y', -1)
-        }
-        break;
-
-      case "y":
-        this.project.deadline.y += amount;
-        break;
-    
-      default:
-        console.error('"dmy" can only be "d" (day) , "m" (month) or "y" (year).')
-        return;
-    }
+    this.project.deadline = this.deadline.changeDeadline(this.project.deadline, dmy, amount)
     this.save();
     return;
   }

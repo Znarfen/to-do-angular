@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { Project } from "../project/project.model";
-import { Task } from "../task/task.model";
+import { Project } from "../interface/project";
+import { Task } from "../interface/task";
 
 @Pipe({
     name: 'deadline'

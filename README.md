@@ -24,9 +24,12 @@ This project uses an API from Dummy JSON: https://dummyjson.com/todos/
     /readme <- (for readme img)
 /src
     /app    <- (for components)
-        ...
+        /interface  <- (for interfaces)
         /pipe       <- (for pipe.ts files)
         /services   <- (for .service.ts files)
+        ...
+    ...
+...
 ```
 
 ### How to use (and design):
@@ -59,9 +62,9 @@ Create project!
 ![alt text](/public/readme/image1.png)  
 Create task!
 ![alt text](/public/readme/image2.png)  
-Add tasks! In this case will we add three tasks, very impresive if you ask me!
+Add tasks! In this case will we add three tasks, very impresive, if you ask me!
 ![alt text](/public/readme/image3.png)  
-Move tasks! You can move tasks to all three difrent categories categories: "To Do", "Ongoing", and "Done". Quite revelusinary, don't you think?
+Move tasks! You can move tasks to all three difrent categories: "To Do", "Ongoing", and "Done". Quite revelusinary, don't you think?
 ![alt text](/public/readme/image4.png)  
 You have now made your very own super cool and very not boring project that contains tasks!  
 ![alt text](/public/readme/image5.png)

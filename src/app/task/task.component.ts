@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { Task } from './task.model';
-import { Project } from '../project/project.model';
+import { Task } from '../interface/task';
+import { Project } from '../interface/project';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { GlobalComponent } from '../global.component';
 import { Router } from '@angular/router';
+import { DeadlineService } from '../services/deadline.service';
 
 @Component({
   selector: 'task',
@@ -14,7 +15,10 @@ import { Router } from '@angular/router';
 })
 
 export class TaskComponent {
-  constructor(public router: Router) {}
+  constructor(
+    public router: Router,
+    private deadline: DeadlineService
+  ) {}
 
   newName: string = '';
   newDescription: string = '';
@@ -58,42 +62,7 @@ export class TaskComponent {
 
   // Change deadline (dmy is "d" for day, "m" for month, "y" for year , anount is chage)
   changeDeadline(task:Task, dmy:string, amount:number) {
-    switch (dmy) {
-      case "d":
-        this.task.deadline.d += amount;
-        if (this.task.deadline.d > 31) {
-          this.task.deadline.d = 1;
-          this.changeDeadline(task, 'm', 1);
-        }
-        else if (this.task.deadline.d <= 0) {
-          this.task.deadline.d = 31;
-          this.changeDeadline(task, 'm', -1);
-
-        }
-        break;
-
-      case "m":
-        this.task.deadline.m += amount;
-        if (this.task.deadline.m > 12) {
-          this.task.deadline.m = 1;
-          this.changeDeadline(task, 'y', 1);
-
-        }
-        else if (this.task.deadline.m <= 0) {
-          this.task.deadline.m = 12;
-          this.changeDeadline(task, 'y', -1);
-
-        }
-        break;
-
-      case "y":
-        this.task.deadline.y += amount;
-        break;
-    
-      default:
-        console.error('"dmy" can only be "d" (day) , "m" (month) or "y" (year).')
-        return;
-    }
+    task.deadline = this.deadline.changeDeadline(task.deadline, dmy, amount);
     return;
   }
 
