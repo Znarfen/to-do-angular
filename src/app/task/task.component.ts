@@ -1,23 +1,27 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, NgModule } from '@angular/core';
 import { Task } from '../interface/task';
 import { Project } from '../interface/project';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { GlobalComponent } from '../global.component';
 import { Router } from '@angular/router';
 import { DeadlineService } from '../services/deadline.service';
 
 @Component({
   selector: 'task',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, CommonModule],
+  standalone: true,
   templateUrl: './task.component.html',
   styleUrl: './task.component.css'
 })
 
 export class TaskComponent {
+  form!: FormGroup;
+
   constructor(
     public router: Router,
-    private deadline: DeadlineService
+    private deadline: DeadlineService,
+    private formB: FormBuilder
   ) {}
 
   newName: string = '';
@@ -27,6 +31,11 @@ export class TaskComponent {
   ngOnInit() {
     this.reload();
     //console.log("In project " + this.project.name + ": \n" + JSON.stringify(this.project))
+
+    this.form = this.formB.group({
+      name: [this.task.name],
+      description: [this.task.description]
+    });
   }
 
   // reload project
@@ -104,9 +113,12 @@ export class TaskComponent {
 
   // Save task temp.
   changeTask(task: Task) {
-    if (this.newName.trim()) {
-      task.name = this.newName.trim();
-      task.description = this.newDescription.trim();
+    const name = this.form.value.name.trim();
+    const description = this.form.value.description.trim();
+
+    if (name) {
+      task.name = name;
+      task.description = description;
       task.editMode = false;
       this.saveTask(task);
     }

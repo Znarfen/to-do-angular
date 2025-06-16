@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { KanbanComponent } from '../kanban/kanban.component';
 import { ListComponent } from '../list/list.component';
 import { FormsModule } from '@angular/forms';
@@ -30,6 +30,8 @@ export class ProjectComponent {
 
   project!: Project;
 
+  proName = signal<string>("");
+
   editMode: boolean = false;
   data: string = "";
 
@@ -41,6 +43,8 @@ export class ProjectComponent {
   ngOnInit() {
     this.project = JSON.parse(localStorage.getItem(this.router.url.split('/')[1].toUpperCase()) || "");
     //console.log("In project " + this.project.name + ": \n" + JSON.stringify(this.project))
+
+    this.proName.set(this.project.name);
 
     this.api.getTasks()
       .subscribe(tsk => {

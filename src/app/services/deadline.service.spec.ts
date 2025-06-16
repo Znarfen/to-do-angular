@@ -32,5 +32,4 @@ describe('deadlineService', () => {
     it('expect changeDeadline({ d: 3, m: 4, y: 2043 }, "z", 1) to return { d: 3, m: 4, y: 2043 }}', () => {
         expect(service.changeDeadline({ d: 3, m: 4, y: 2043 }, 'z', 1)).toEqual({ d: 3, m: 4, y: 2043 });
     });
-
 });

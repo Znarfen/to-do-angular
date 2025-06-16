@@ -1,11 +1,11 @@
 
 <div class="project">
-  <h1>/ {{ project.name | titlecase }} </h1>
+  <h1>/ {{ proName() | titlecase }} </h1>
   <p>{{ project.description }}</p>
   <p>{{ project | deadline }} </p>
 
   <div>
-    <button (click)="edit()">Edit: {{ project.name }}</button>
+    <button (click)="edit()">Edit: {{ proName() }}</button>
   </div>
 
   @if (editMode) {
